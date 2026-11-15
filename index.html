@@ -1,11 +1,240 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My First Homepage</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A friendly, step-by-step guide to making your first Git commit using Git Bash.">
+  <title>Git Bash for Beginners | Your First Commit</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172033;
+      --muted: #596579;
+      --paper: #ffffff;
+      --background: #f3f6fb;
+      --blue: #2563eb;
+      --blue-dark: #173a8a;
+      --green: #0b7655;
+      --line: #dbe3ef;
+      --code: #101827;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--ink);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+    a { color: var(--blue); }
+    .hero {
+      padding: 76px 24px 64px;
+      background: linear-gradient(135deg, #10244e, #1d4ed8 65%, #4f8df7);
+      color: white;
+    }
+    .hero-inner, main, footer { width: min(100% - 32px, 1020px); margin: 0 auto; }
+    .eyebrow { margin: 0 0 12px; color: #c9dcff; font-size: .85rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+    h1 { max-width: 800px; margin: 0; font-size: clamp(2.5rem, 7vw, 4.8rem); line-height: 1.08; letter-spacing: -.045em; }
+    .hero p { max-width: 740px; margin: 22px 0 0; color: #e5edff; font-size: 1.2rem; }
+    .hero-badge { display: inline-block; margin-top: 28px; padding: 8px 14px; border: 1px solid #ffffff66; border-radius: 999px; color: white; font-size: .9rem; }
+    main { padding: 30px 0 64px; }
+    .card { margin: 22px 0; padding: clamp(22px, 4vw, 38px); border: 1px solid var(--line); border-radius: 18px; background: var(--paper); box-shadow: 0 8px 28px #14213d0a; }
+    h2 { margin: 0 0 12px; font-size: clamp(1.6rem, 4vw, 2.2rem); line-height: 1.25; }
+    h3 { margin: 26px 0 8px; font-size: 1.25rem; }
+    p { margin: 10px 0; }
+    .muted { color: var(--muted); }
+    .quick-start { border-left: 5px solid var(--green); }
+    .steps { display: grid; gap: 14px; margin: 22px 0; padding: 0; list-style: none; counter-reset: step; }
+    .steps li { position: relative; min-height: 45px; padding: 3px 0 3px 58px; counter-increment: step; }
+    .steps li::before { position: absolute; top: 0; left: 0; display: grid; width: 40px; height: 40px; place-items: center; border-radius: 50%; background: #e7efff; color: var(--blue-dark); content: counter(step); font-weight: 800; }
+    pre { overflow-x: auto; margin: 14px 0; padding: 18px 20px; border-radius: 12px; background: var(--code); color: #e5edf9; font-size: .95rem; line-height: 1.65; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    p code, li code { padding: 2px 6px; border-radius: 5px; background: #edf2fb; color: #183b83; font-size: .92em; }
+    pre code { padding: 0; background: none; color: inherit; }
+    .note, .warning { margin: 18px 0; padding: 15px 18px; border-radius: 10px; }
+    .note { border: 1px solid #bfdbfe; background: #eff6ff; }
+    .warning { border: 1px solid #f5d28a; background: #fffbeb; }
+    .two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+    .mini-card { padding: 18px; border: 1px solid var(--line); border-radius: 12px; background: #fbfcff; }
+    .mini-card h3 { margin-top: 0; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 12px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { color: var(--blue-dark); }
+    .checklist li { margin: 8px 0; }
+    footer { padding: 0 0 42px; color: var(--muted); text-align: center; }
+    @media (max-width: 600px) {
+      body { font-size: 16px; }
+      .hero { padding: 54px 20px 46px; }
+      .hero-inner, main, footer { width: min(100% - 24px, 1020px); }
+      th, td { padding: 9px 6px; font-size: .9rem; }
+    }
+  </style>
 </head>
 <body>
-  <h1>Welcome to My Website!</h1>
-  <p>This is real code tracked by Git.</p>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">A friendly, hands-on guide</p>
+      <h1>Your first Git commit with Git Bash</h1>
+      <p>Learn how to save a snapshot of your project, check your work, and send it to GitHub—one clear command at a time.</p>
+      <span class="hero-badge">Beginner friendly · Windows · No experience needed</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="card quick-start" id="quick-start">
+      <h2>The quick version</h2>
+      <p>Open Git Bash in your project folder. Then use these commands to prepare and make a commit:</p>
+      <pre><code>git status
+git add .
+git commit -m "Describe your change"</code></pre>
+      <p><strong>A commit saves your changes in Git on your computer.</strong> It does not automatically upload them to GitHub. To upload, you normally use <code>git push</code> afterward.</p>
+    </section>
+
+    <section class="card" id="git-basics">
+      <h2>First, what are Git and Git Bash?</h2>
+      <div class="two-col">
+        <div class="mini-card"><h3>Git</h3><p>Git keeps a history of changes to your files. You can save checkpoints, compare versions, and work safely on a project over time.</p></div>
+        <div class="mini-card"><h3>Git Bash</h3><p>Git Bash is a command window installed with Git for Windows. You type Git commands there to manage your project.</p></div>
+      </div>
+      <h3>Three places to know</h3>
+      <ol>
+        <li><strong>Working folder:</strong> the files you are editing right now.</li>
+        <li><strong>Staging area:</strong> the changes you have selected for the next commit.</li>
+        <li><strong>Repository history:</strong> the commits Git has already saved.</li>
+      </ol>
+      <p>Think of staging as putting items into a box, and committing as sealing and labeling that box.</p>
+    </section>
+
+    <section class="card" id="setup">
+      <h2>1. Install Git and open Git Bash</h2>
+      <p>If Git is not installed yet, install <a href="https://git-scm.com/downloads">Git for Windows</a>. Search your Start menu for <strong>Git Bash</strong> to open it.</p>
+      <p>Move into your project folder using <code>cd</code>. For example, if your project is in Documents:</p>
+      <pre><code>cd ~/Documents/my-first-project</code></pre>
+      <p>Replace <code>my-first-project</code> with the actual folder name. To see the files and folders where you are, type:</p>
+      <pre><code>pwd
+ls</code></pre>
+      <p class="note"><strong>Tip:</strong> In File Explorer, you can often right-click inside your project folder and choose <strong>Open Git Bash here</strong>.</p>
+    </section>
+
+    <section class="card" id="identity">
+      <h2>2. Set your name and email (one-time setup)</h2>
+      <p>Git records who made each commit. Set the name and email you want attached to your commits:</p>
+      <pre><code>git config --global user.name "Your Name"
+git config --global user.email "you@example.com"</code></pre>
+      <p>Use your own name and email instead of the examples. The <code>--global</code> option applies these settings to your Git projects on this computer.</p>
+      <p>Check what Git saved:</p>
+      <pre><code>git config --global --list</code></pre>
+    </section>
+
+    <section class="card" id="first-commit">
+      <h2>3. Make your first commit</h2>
+      <ol class="steps">
+        <li><strong>Check the folder.</strong> Make sure Git Bash is open in the project folder. Run <code>pwd</code> to see your current location.</li>
+        <li><strong>Check the changes.</strong> See which files are new or have been edited:</li>
+      </ol>
+      <pre><code>git status</code></pre>
+      <ol class="steps" start="3">
+        <li><strong>Stage the files you want to save.</strong> To stage all changes in this folder, run:</li>
+      </ol>
+      <pre><code>git add .</code></pre>
+      <p>The dot means “include changes under the current folder.” To stage just one file, use its name instead, for example <code>git add index.html</code>.</p>
+      <ol class="steps" start="4">
+        <li><strong>Check staging.</strong> Run <code>git status</code> again. Staged changes are usually shown in green. Review the list before committing.</li>
+        <li><strong>Save the commit.</strong> Write a short message that explains what you changed:</li>
+      </ol>
+      <pre><code>git commit -m "Add welcome page"</code></pre>
+      <p>The words inside the quotation marks are your commit message. Make it specific, such as <code>Fix navigation links</code> or <code>Add contact form</code>.</p>
+      <ol class="steps" start="6">
+        <li><strong>Confirm it worked.</strong> Git prints a confirmation. You can also check your recent commits with:</li>
+      </ol>
+      <pre><code>git log --oneline</code></pre>
+    </section>
+
+    <section class="card" id="everyday">
+      <h2>Your everyday commit routine</h2>
+      <p>After you edit files, repeat this simple cycle:</p>
+      <pre><code>git status
+git add index.html
+git status
+git commit -m "Update homepage text"</code></pre>
+      <p>Replace <code>index.html</code> and the message with the file and change you actually made. If you want to stage every changed file, use <code>git add .</code> instead.</p>
+      <div class="note"><strong>Good habit:</strong> Use <code>git status</code> before staging and before committing. It helps you catch files you did not mean to include.</div>
+      <h3>What makes a useful commit message?</h3>
+      <ul>
+        <li>Keep it short but clear.</li>
+        <li>Describe the change, not just “stuff” or “updates.”</li>
+        <li>Make each commit about a sensible small set of changes.</li>
+      </ul>
+    </section>
+
+    <section class="card" id="github">
+      <h2>Commit versus upload to GitHub</h2>
+      <p>A commit is saved in your local repository. <strong>Pushing</strong> sends commits to a remote repository, such as GitHub.</p>
+      <h3>If you already cloned a GitHub repository</h3>
+      <p>After committing, send your commit to the current branch on GitHub with:</p>
+      <pre><code>git push</code></pre>
+      <h3>If this is a new local project</h3>
+      <p>Create an empty repository on GitHub first. GitHub will show the correct remote URL and setup instructions. Add that URL as your remote, using the URL GitHub provides:</p>
+      <pre><code>git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git</code></pre>
+      <p>Then check the branch name and push it (many new repositories use <code>main</code>):</p>
+      <pre><code>git branch -M main
+git push -u origin main</code></pre>
+      <p class="warning"><strong>Important:</strong> Replace the sample remote URL with your own repository URL. Do not copy the placeholder literally. GitHub may ask you to sign in or authorize Git.</p>
+    </section>
+
+    <section class="card" id="commands">
+      <h2>Useful Git commands</h2>
+      <table>
+        <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+        <tbody>
+          <tr><td><code>git status</code></td><td>Shows changed, staged, and untracked files.</td></tr>
+          <tr><td><code>git add filename</code></td><td>Stages one file for the next commit.</td></tr>
+          <tr><td><code>git add .</code></td><td>Stages changes in the current folder and its subfolders.</td></tr>
+          <tr><td><code>git diff</code></td><td>Shows edits that have not been staged yet.</td></tr>
+          <tr><td><code>git diff --staged</code></td><td>Shows edits that are staged for the next commit.</td></tr>
+          <tr><td><code>git commit -m "message"</code></td><td>Saves the staged changes as a commit.</td></tr>
+          <tr><td><code>git log --oneline</code></td><td>Shows a compact list of recent commits.</td></tr>
+          <tr><td><code>git pull</code></td><td>Downloads and integrates changes from the remote repository.</td></tr>
+          <tr><td><code>git push</code></td><td>Uploads your commits to the remote repository.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card" id="troubleshooting">
+      <h2>Common beginner problems</h2>
+      <h3>“Please tell me who you are”</h3>
+      <p>Set your name and email using the commands in the one-time setup section, then try the commit again.</p>
+      <h3>“Nothing to commit”</h3>
+      <p>Git may have no new changes to save, or you may be in the wrong folder. Run <code>pwd</code> and <code>git status</code> to check.</p>
+      <h3>“Untracked files”</h3>
+      <p>These are new files Git has not started tracking yet. Stage the file with <code>git add filename</code>, then commit it.</p>
+      <h3>“The current branch has no upstream branch”</h3>
+      <p>For a first push of a branch, Git may suggest a command such as <code>git push --set-upstream origin main</code>. Follow the suggested branch name shown in your terminal.</p>
+      <h3>I staged the wrong file</h3>
+      <p>To remove a file from staging without deleting it, use:</p>
+      <pre><code>git restore --staged filename</code></pre>
+      <p>Then run <code>git status</code> and stage the correct files.</p>
+      <div class="warning"><strong>Be careful:</strong> Avoid commands that delete files or rewrite commit history unless you understand what they do. If you are unsure, check <code>git status</code> first and ask for help before running a destructive command.</div>
+    </section>
+
+    <section class="card" id="checklist">
+      <h2>Before you finish</h2>
+      <ul class="checklist">
+        <li>☐ I opened Git Bash in the correct project folder.</li>
+        <li>☐ I checked my changes with <code>git status</code>.</li>
+        <li>☐ I staged only the files I want to save.</li>
+        <li>☐ My commit message explains what I changed.</li>
+        <li>☐ I remembered that committing is local; pushing uploads to GitHub.</li>
+      </ul>
+      <p>You are ready! Keep practicing with small changes, and use <code>git status</code> whenever you want to know what Git sees.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Made for people learning Git one commit at a time.</p>
+  </footer>
 </body>
 </html>
