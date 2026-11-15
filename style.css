@@ -1,15 +1,213 @@
-body {
-  background-color: #f0f4f8;
-  font-family: Arial, sans-serif;
-  text-align: center;
-  padding-top: 50px;
+/* A crisp, warm palette for the Git Bash learning guide. */
+:root {
+  color-scheme: light;
+  --ink: #202124;
+  --muted: #5f6368;
+  --paper: #ffffff;
+  --background: #f8f9fa;
+  --blue: #1a73e8;
+  --blue-dark: #174ea6;
+  --green: #188038;
+  --line: #e4e7eb;
+  --code: #202124;
+  --red: #d93025;
+  --yellow: #f9ab00;
 }
 
-h1 {
-  color: #1e3a8a;
+/* The page also has some inline styles. The slightly more specific selectors
+   below ensure this external stylesheet can theme those existing elements. */
+html body {
+  --ink: #202124;
+  --muted: #5f6368;
+  --paper: #ffffff;
+  --background: #f8f9fa;
+  --blue: #1a73e8;
+  --blue-dark: #174ea6;
+  --green: #188038;
+  --line: #e4e7eb;
+  --code: #202124;
+  background-color: #f8f9fa;
+  color: #202124;
 }
 
-p {
-  color: #334155;
-  font-size: 18px;
+html body::selection {
+  color: #174ea6;
+  background: #d2e3fc;
+}
+
+html body a {
+  color: #1a73e8;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+html body a:hover {
+  color: #174ea6;
+}
+
+html body a:focus-visible {
+  outline: 3px solid #8ab4f8;
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+html body .hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(118deg, #174ea6 0%, #1a73e8 58%, #4285f4 100%);
+  color: #fff;
+}
+
+html body .hero::after {
+  position: absolute;
+  right: -110px;
+  bottom: -250px;
+  width: 520px;
+  height: 520px;
+  border: 1px solid rgb(255 255 255 / 15%);
+  border-radius: 50%;
+  box-shadow: 0 0 0 48px rgb(255 255 255 / 5%), 0 0 0 96px rgb(255 255 255 / 4%);
+  content: "";
+  pointer-events: none;
+}
+
+html body .hero-inner {
+  position: relative;
+  z-index: 1;
+}
+
+html body .eyebrow {
+  color: #d2e3fc;
+  letter-spacing: .11em;
+}
+
+html body .hero p {
+  color: #e8f0fe;
+}
+
+html body .hero-badge {
+  border-color: rgb(255 255 255 / 36%);
+  background: rgb(255 255 255 / 10%);
+  backdrop-filter: blur(8px);
+}
+
+html body .card {
+  border: 1px solid #e4e7eb;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgb(60 64 67 / 8%), 0 4px 12px rgb(60 64 67 / 5%);
+  transition: box-shadow 160ms ease, transform 160ms ease;
+}
+
+html body .card:hover {
+  box-shadow: 0 2px 6px rgb(60 64 67 / 10%), 0 8px 20px rgb(60 64 67 / 8%);
+  transform: translateY(-2px);
+}
+
+html body .quick-start {
+  border-left: 5px solid #188038;
+  background: linear-gradient(110deg, #f1f8f3 0%, #fff 42%);
+}
+
+html body h2 {
+  color: #202124;
+  letter-spacing: -.025em;
+}
+
+html body h3 {
+  color: #3c4043;
+}
+
+html body .muted,
+html body footer {
+  color: #5f6368;
+}
+
+html body .mini-card {
+  border-color: #e8eaed;
+  background: #f8fafd;
+}
+
+html body .mini-card:nth-child(1) {
+  border-top: 3px solid #4285f4;
+}
+
+html body .mini-card:nth-child(2) {
+  border-top: 3px solid #34a853;
+}
+
+html body pre {
+  border: 1px solid #303134;
+  background: #202124;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 4%);
+}
+
+html body p code,
+html body li code {
+  border: 1px solid #e8eaed;
+  background: #f1f3f4;
+  color: #174ea6;
+}
+
+html body pre code {
+  border: 0;
+  background: transparent;
+  color: #e8eaed;
+}
+
+html body .note {
+  border: 1px solid #d2e3fc;
+  background: #f1f6fe;
+  color: #303f54;
+}
+
+html body .note strong {
+  color: #174ea6;
+}
+
+html body .warning {
+  border: 1px solid #fce8b2;
+  background: #fef7e0;
+  color: #594300;
+}
+
+html body .warning strong {
+  color: #8a5a00;
+}
+
+html body table thead {
+  background: #f1f3f4;
+}
+
+html body th {
+  color: #174ea6;
+}
+
+html body tbody tr:hover {
+  background: #f8fafd;
+}
+
+html body tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+html body .checklist li::marker {
+  color: #188038;
+}
+
+html body footer {
+  padding-top: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  html body .card { transition: none; }
+  html body .card:hover { transform: none; }
+}
+
+@media (max-width: 600px) {
+  html body .hero::after {
+    right: -300px;
+    bottom: -330px;
+  }
 }
